@@ -53,3 +53,51 @@ print('OTHER POSTS TITLE COUNT ' +str(len(other_posts)))
 ASK POSTS TITLE COUNT 1744
 SHOW POSTS TITLE COUNT 1162
 OTHER POSTS TITLE COUNT 17194
+
+#we will find average number of posts with ask_posts title
+tot_ask_comm = 0
+
+for post in ask_posts:
+    tot_ask_comm += int(post[4])
+avg_ask_comm = tot_ask_comm/len(ask_posts)
+print(avg_ask_comm)
+#ouput
+14.038417431192661
+
+#we will find average number of posts with show_posts title
+tot_show_comm = 0
+
+for post in show_posts:
+    tot_show_comm += int(post[4])
+avg_show_comm = tot_show_comm/len(show_posts)
+print(avg_show_comm)
+10.31669535283993
+
+#We will now try to determine if ask posts created at a certain time are receiving more comments.
+import datetime as dt
+
+#we will extract from the posts, the time the post was creaated and the num of comments for that post
+
+result = []
+print(ask_posts[0])
+
+for post in ask_posts:
+   result.append([post[6], int(post[4])])
+print()
+#print(result[:10])
+counts_by_hour = {}
+comments_by_hour = {}
+format="%m/%d/%Y %H:%M" 
+for item in result:
+    hour=item[0]
+    num_of_comments=item[1]
+    time=dt.datetime.strptime(hour, "%m/%d/%Y %H:%M").strftime("%H")
+    if time not in counts_by_hour:
+        counts_by_hour[time] =1
+        comments_by_hour[time] = int(num_of_comments)
+    else:
+        counts_by_hour[time]+=1
+        comments_by_hour[time]+=int(num_of_comments)
+print(counts_by_hour)
+print(comments_by_hour)
+    

@@ -101,3 +101,57 @@ for item in result:
 print(counts_by_hour)
 print(comments_by_hour)
     
+#calculate the average num of psots
+avg_by_hour = []
+
+for hour in counts_by_hour:
+    avg_by_hour.append([hour, comments_by_hour[hour] / counts_by_hour[hour]])
+    
+for post in avg_by_hour:
+    print(post)
+    
+ #Finalizing results to a statement
+swap_avg_by_hour= []
+for row in avg_by_hour:
+    swap_avg_by_hour.append([row[1], row[0]])
+for r in swap_avg_by_hour:
+    print(r)
+sorted_swap = sorted(swap_avg_by_hour, reverse=False)
+print("Top 5 Hours for Ask Posts Comments")
+for avg,hour in sorted_swap[:5]:
+    time = dt.datetime.strptime(hour, "%H")
+    req = time.strftime("%H:%M")
+    print("At {} {:.2f} posts per day".format(req, avg))
+
+    
+ #output
+[6.746478873239437, '22']
+[7.985294117647059, '23']
+[16.009174311926607, '21']
+[13.440677966101696, '10']
+[38.5948275862069, '15']
+[13.20183486238532, '18']
+[11.051724137931034, '11']
+[8.127272727272727, '00']
+[13.233644859813085, '14']
+[9.022727272727273, '06']
+[5.5777777777777775, '09']
+[16.796296296296298, '16']
+[10.08695652173913, '05']
+[21.525, '20']
+[7.796296296296297, '03']
+[9.41095890410959, '12']
+[7.170212765957447, '04']
+[10.25, '08']
+[11.383333333333333, '01']
+[11.46, '17']
+[7.852941176470588, '07']
+[14.741176470588234, '13']
+[10.8, '19']
+[23.810344827586206, '02']
+Top 5 Hours for Ask Posts Comments
+At 09:00 5.58 posts per day
+At 22:00 6.75 posts per day
+At 04:00 7.17 posts per day
+At 03:00 7.80 posts per day
+At 07:00 7.85 posts per day
